@@ -4,10 +4,11 @@ from decor import except_catch_packet,except_catch
 from functools import reduce
 import psutil
 
-class PacketGen:
+class PacketGenerator:
     @except_catch
     def __init__(self):
-        conf.iface = 'Ethernet'
+        self.setInterface(self.getInterfaceList()[0])
+        self.list_packet : list[IP|ICMP|UDP|TCP] = list()
 
     @except_catch_packet('IP')
     def getIpPacket(self,
@@ -64,10 +65,12 @@ class PacketGen:
     @except_catch
     def getInterfaceList(self) -> list[str]:
         interfaces = list(psutil.net_if_addrs().keys())[1:]
-        return interfaces
+        return list(map(str,interfaces))
 
+    @except_catch
     def setInterface(self, new_interface : str) -> None:
-        if new_interface not in self.get_interface_list():
+        if new_interface not in self.getInterfaceList():
             print(f'Интерфейс {new_interface} не был найден')
         else:
+            print(new_interface)
             conf.iface = new_interface

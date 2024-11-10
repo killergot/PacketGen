@@ -9,8 +9,9 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.uic.properties import int_list
 
-from PacketGen import PacketGen
+from PacketGen import PacketGenerator
 from decor import except_catch
 
 class Ui_PacketGen(object):
@@ -48,7 +49,6 @@ class Ui_PacketGen(object):
         self.int_list = QtWidgets.QComboBox(self.centralwidget)
         self.int_list.setGeometry(QtCore.QRect(780, 20, 221, 22))
         self.int_list.setObjectName("int_list")
-        self.int_list.addItem("")
         self.bob = QtWidgets.QTabWidget(self.centralwidget)
         self.bob.setGeometry(QtCore.QRect(400, 240, 731, 181))
         self.bob.setObjectName("bob")
@@ -241,7 +241,10 @@ class Ui_PacketGen(object):
         self.retranslateUi(PacketGen)
         self.bob.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(PacketGen)
-        self.handlerCreate()
+        self.temp = PacketGenerator()
+
+        self.MyInit()
+
 
     def retranslateUi(self, PacketGen):
         _translate = QtCore.QCoreApplication.translate
@@ -250,7 +253,6 @@ class Ui_PacketGen(object):
         self.label_5.setText(_translate("PacketGen", "created by Rubick"))
         self.label_6.setText(_translate("PacketGen", "Select Interface       :"))
         self.create.setText(_translate("PacketGen", "Create"))
-        self.int_list.setItemText(0, _translate("PacketGen", "default: Ethernet"))
         self.icmp_code_box.setText(_translate("PacketGen", "Code"))
         self.icmp_id_box.setText(_translate("PacketGen", "ID"))
         self.label_11.setText(_translate("PacketGen", "Type :"))
@@ -286,10 +288,16 @@ class Ui_PacketGen(object):
         self.label_9.setText(_translate("PacketGen", "L2:"))
         self.just_ip.setText(_translate("PacketGen", "may be just send IP packet?"))
 
-
-    def handlerCreate(self):
+    @except_catch
+    def MyInit(self) -> None:
+        _translate = QtCore.QCoreApplication.translate
         self.create.clicked.connect(lambda: self.createPacket())
+        for i,v in enumerate(self.temp.getInterfaceList()):
+            self.int_list.addItem("")
+            self.int_list.setItemText(i, _translate("PacketGen", v))
+        self.int_list.currentTextChanged.connect(lambda: self.temp.setInterface(self.int_list.currentText()))
 
+    @except_catch
     def getFlags(self) -> str:
         flags: str = ''
         if self.SYN.isChecked():
@@ -313,7 +321,7 @@ class Ui_PacketGen(object):
 
     @except_catch
     def createPacket(self) -> None:
-        temp = PacketGen()
+
         ip_layer= None
         kwargs: dict[str, str | int] = dict()
         kwargs['src'] =  self.ip_src_text.toPlainText()
@@ -321,10 +329,10 @@ class Ui_PacketGen(object):
         kwargs['id_ip'] = int(self.ip_id_text.toPlainText())
         kwargs['ttl'] = int(self.ip_ttl_text.toPlainText())
         kwargs = {k: v for k, v in kwargs.items() if len(str(v))}
-        ip_layer = temp.getIpPacket(**kwargs)
+        ip_layer =self.temp.getIpPacket(**kwargs)
 
         if self.just_ip.isChecked():
-            temp.sendPacket(ip_layer)
+           self.temp.sendPacket(ip_layer)
 
         elif self.icmp.isVisible():
             kwargs.clear()
@@ -333,8 +341,8 @@ class Ui_PacketGen(object):
             kwargs['id'] = self.icmp_id_text.toPlainText()
             kwargs = {k: int(v) for k, v in kwargs.items() if len(v)}
 
-            icmp_layer = temp.getIcmpPacket(**kwargs)
-            temp.sendPacket(ip_layer,icmp_layer)
+            icmp_layer = self.temp.getIcmpPacket(**kwargs)
+            self.temp.sendPacket(ip_layer,icmp_layer)
         elif self.TCP.isVisible():
             kwargs.clear()
             kwargs['sport'] = self.tcp_src_port.text()
@@ -347,8 +355,8 @@ class Ui_PacketGen(object):
             kwargs['payload'] = self.tcp_data_text_edit.toPlainText()
             kwargs['flags'] = self.getFlags()
 
-            tcp_layer = temp.getTcpPacket(**kwargs)
-            temp.sendPacket(ip_layer,tcp_layer)
+            tcp_layer =self.temp.getTcpPacket(**kwargs)
+            self.temp.sendPacket(ip_layer,tcp_layer)
         elif self.UDP.isVisible():
             kwargs.clear()
             kwargs['sport'] = self.udp_src_port.text()
@@ -356,8 +364,8 @@ class Ui_PacketGen(object):
             kwargs = {k: int(v) for k, v in kwargs.items() if len(v)}
             kwargs['payload'] = self.udp_data_text.toPlainText()
 
-            udp_layer = temp.getUdpPacket(**kwargs)
-            temp.sendPacket(ip_layer,udp_layer)
+            udp_layer =self.temp.getUdpPacket(**kwargs)
+            self.temp.sendPacket(ip_layer,udp_layer)
 
 
 if __name__ == "__main__":
