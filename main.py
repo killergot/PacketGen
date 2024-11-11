@@ -2,7 +2,7 @@ from PacketGen import PacketGenerator
 from decor import except_catch
 
 from UI import Ui_PacketGen
-from PyQt5 import QtCore, QtWidgets
+from PyQt5 import QtCore,QtGui, QtWidgets
 
 class MyClass(Ui_PacketGen):
     def __init__(self):
@@ -21,6 +21,20 @@ class MyClass(Ui_PacketGen):
             self.int_list.addItem("")
             self.int_list.setItemText(i, _translate("PacketGen", v))
         self.int_list.currentTextChanged.connect(lambda: self.temp.setInterface(self.int_list.currentText()))
+        self.model = QtGui.QStandardItemModel()
+        self.model.setHorizontalHeaderLabels(['proto','src','dst','info'])
+        self.Packet_view.setModel(self.model)
+        self.Packet_view.setColumnWidth(0, 30)  # Ширина первого столбца 100 пикселей
+        self.Packet_view.setColumnWidth(1, 100)  # Ширина второго столбца 150 пикселей
+        self.Packet_view.setColumnWidth(2, 100)
+        self.Packet_view.setColumnWidth(3, 130)
+
+    @except_catch
+    def add_data_to_table(self, data):
+        '''Выводит отправенные пакеты в таблице'''
+        items = [QtGui.QStandardItem(str(cell)) for cell in data[:-1]]
+        self.model.appendRow(items)
+
 
     @except_catch
     def getFlags(self) -> str:
@@ -45,7 +59,9 @@ class MyClass(Ui_PacketGen):
 
     @except_catch
     def createPacket(self) -> None:
-
+        '''Обрабатывает нажатие кнопки Create
+           - Создает пакет на основе веденных данных в разные поля
+           - Если поля пустые, то не вносит их в создание пакета'''
         ip_layer = None
         kwargs: dict[str, str | int] = dict()
         if self.ip_src_box.isChecked():
@@ -59,7 +75,6 @@ class MyClass(Ui_PacketGen):
 
         if self.just_ip.isChecked():
             self.temp.sendPacket(ip_layer)
-
         elif self.icmp.isVisible():
             kwargs.clear()
             kwargs['type'] = self.icmp_type_text.toPlainText()
@@ -94,6 +109,9 @@ class MyClass(Ui_PacketGen):
 
             udp_layer = self.temp.getUdpPacket(**kwargs)
             self.temp.sendPacket(ip_layer, udp_layer)
+
+
+        self.add_data_to_table(self.temp.list_packet[-1])
 
 
 if __name__ == "__main__":

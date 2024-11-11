@@ -8,7 +8,7 @@ class PacketGenerator:
     @except_catch
     def __init__(self):
         self.setInterface(self.getInterfaceList()[0])
-        self.list_packet : list[IP|ICMP|UDP|TCP] = list()
+        self.list_packet : list[list[int|str]] = list()
 
     @except_catch_packet('IP')
     def getIpPacket(self,
@@ -33,7 +33,7 @@ class PacketGenerator:
     def getTcpPacket(self,
                            sport: int = 12345,
                            dport: int = 80,
-                           flags: str = 'a',
+                           flags: str = '',
                            seq: int = 1000,
                            ack: int = 0,
                            window: int = 1024,
@@ -61,7 +61,7 @@ class PacketGenerator:
         full_packet = reduce(lambda x, y: x / y, args)
         print(full_packet)
         send(full_packet)
-        # self.addPacketInList(full_packet)
+        self.list_packet.append(self.extractPacketData(full_packet))
 
     @except_catch
     def getInterfaceList(self) -> list[str]:
@@ -69,9 +69,50 @@ class PacketGenerator:
         return list(map(str,interfaces))
 
     @except_catch
-    def addPacketInList(self,packet: IP|ICMP|TCP|UDP) -> None:
-        temp = []
-        temp.append(packet.protocol)
+    def extractPacketData(self,packet : IP|TCP|ICMP|UDP) -> list[int|str] :
+        """Преобразовывает сетевой пакет в массив с иформацией """
+        packet_data : list[int|str] = list()
+        protocol : str|int = packet[IP].proto
+        if packet.haslayer(IP):
+            if protocol == 0:
+                protocol = 'IP'
+            elif protocol == 1:
+                protocol = 'ICMP'
+            elif protocol == 6:
+                protocol = 'TCP'
+            elif protocol == 17:
+                protocol = 'UDP'
+            src_ip = packet[IP].src
+            dst_ip = packet[IP].dst
+        else:
+            protocol = None
+            src_ip = None
+            dst_ip = None
+
+        src_port, dst_port, flags = None, None, None
+        if packet.haslayer(TCP):
+            src_port = packet[TCP].sport
+            dst_port = packet[TCP].dport
+            flags = packet[TCP].flags
+        elif packet.haslayer(UDP):
+            src_port = packet[UDP].sport
+            dst_port = packet[UDP].dport
+        elif packet.haslayer(ICMP):
+            id = packet[ICMP].id
+            code = packet[ICMP].code
+
+        payload = bytes(packet[Raw].load) if packet.haslayer(Raw) else None
+
+        if protocol == 'TCP':
+            packet_data.extend([protocol, src_ip,dst_ip,f'[{dst_port} -> {src_port}], {flags}', payload])
+        elif protocol == 'UDP':
+            packet_data.extend([protocol, src_ip,dst_ip,f'[{dst_port} -> {src_port}]', payload])
+        elif protocol == 'IP':
+            packet_data.extend([protocol, src_ip, dst_ip,'Just IP', payload])
+        else:
+            packet_data.extend([protocol, src_ip, dst_ip,f'id = {id}, code = {code}' , payload])
+
+        return packet_data
 
 
     @except_catch

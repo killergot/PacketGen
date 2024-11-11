@@ -8,6 +8,7 @@ def except_catch(method):
             return result
         except Exception as e:
             print(f"Что-то пошло не так при исполнении {method.__name__}")
+            print(e)
             return None
     return wrapper
 
