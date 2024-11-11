@@ -61,11 +61,18 @@ class PacketGenerator:
         full_packet = reduce(lambda x, y: x / y, args)
         print(full_packet)
         send(full_packet)
+        # self.addPacketInList(full_packet)
 
     @except_catch
     def getInterfaceList(self) -> list[str]:
         interfaces = list(psutil.net_if_addrs().keys())[1:]
         return list(map(str,interfaces))
+
+    @except_catch
+    def addPacketInList(self,packet: IP|ICMP|TCP|UDP) -> None:
+        temp = []
+        temp.append(packet.protocol)
+
 
     @except_catch
     def setInterface(self, new_interface : str) -> None:
