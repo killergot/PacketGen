@@ -1,10 +1,10 @@
 from PacketGen import PacketGenerator
 from decor import except_catch
 
-from UI import Ui_PacketGen
-from PyQt5 import QtCore,QtGui, QtWidgets
+from UI import Ui_MainWindow
+from PyQt6 import QtCore,QtGui, QtWidgets
 
-class MyClass(Ui_PacketGen):
+class MyClass(Ui_MainWindow):
     def __init__(self):
         self.temp = PacketGenerator()
 
@@ -17,6 +17,7 @@ class MyClass(Ui_PacketGen):
     def MyInit(self) -> None:
         _translate = QtCore.QCoreApplication.translate
         self.create.clicked.connect(lambda: self.createPacket())
+        self.int_list.clear()
         for i, v in enumerate(self.temp.getInterfaceList()):
             self.int_list.addItem("")
             self.int_list.setItemText(i, _translate("PacketGen", v))
@@ -28,6 +29,20 @@ class MyClass(Ui_PacketGen):
         self.Packet_view.setColumnWidth(1, 100)  # Ширина второго столбца 150 пикселей
         self.Packet_view.setColumnWidth(2, 100)
         self.Packet_view.setColumnWidth(3, 130)
+        self.selection_packet_model = self.Packet_view.selectionModel()
+        self.selection_packet_model.selectionChanged.connect(self.on_selection_changed)
+
+
+    @except_catch
+    def on_selection_changed(self, selected, deselected):
+        # Получаем индексы выбранных строк
+        indexes = self.selection_packet_model.selectedRows()
+        if indexes:  # Если есть выбранные строки
+            selected_row = indexes[0].row()  # Берем первую выбранную строку
+            self.label234 = QtWidgets.QLabel("Ваш текст здесь", self.centralwidget)
+            self.label234.setGeometry(QtCore.QRect(10, 440, 381, 121))
+            self.label234.setObjectName("label")
+            print('asdfsdaf')
 
     @except_catch
     def add_data_to_table(self, data):
@@ -61,15 +76,16 @@ class MyClass(Ui_PacketGen):
     def createPacket(self) -> None:
         '''Обрабатывает нажатие кнопки Create
            - Создает пакет на основе веденных данных в разные поля
-           - Если поля пустые, то не вносит их в создание пакета'''
+           - Если поля пустые, то не вносит их в создание пакета
+                Тогда беруться дефолтные значения, чтоб пакет коректно был сформирован'''
         ip_layer = None
         kwargs: dict[str, str | int] = dict()
         if self.ip_src_box.isChecked():
-            kwargs['src'] = self.ip_src_text.toPlainText()
+            kwargs['src'] = self.ip_src_text.text()
         if self.ip_dst_box.isChecked():
-            kwargs['dst'] = self.ip_dst_text.toPlainText()
-        kwargs['id_ip'] = int(self.ip_id_text.toPlainText())
-        kwargs['ttl'] = int(self.ip_ttl_text.toPlainText())
+            kwargs['dst'] = self.ip_dst_text.text()
+        kwargs['id_ip'] = self.ip_id_text.text()
+        kwargs['ttl'] = self.ip_ttl_text.text()
         kwargs = {k: v for k, v in kwargs.items() if len(str(v))}
         ip_layer = self.temp.getIpPacket(**kwargs)
 
@@ -121,4 +137,4 @@ if __name__ == "__main__":
     ui = MyClass()
     ui.setupUi(PacketGenWin)
     PacketGenWin.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())

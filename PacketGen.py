@@ -14,9 +14,9 @@ class PacketGenerator:
     def getIpPacket(self,
                          src : str = '192.168.0.56',
                          dst : str = '8.8.8.8',
-                         id_ip : int = 13559,
-                         ttl : int = 56) -> IP:
-        ip_packet = IP(src=src, dst=dst, ttl=ttl, id=id_ip)
+                         id_ip : int|str = 13559,
+                         ttl : int|str = 56) -> IP:
+        ip_packet = IP(src=src, dst=dst, ttl=int(ttl), id=int(id_ip))
         return ip_packet
 
     @except_catch_packet('ICMP')
@@ -26,7 +26,7 @@ class PacketGenerator:
                            id : int = 135,
                            ) -> ICMP:
 
-        icmp_packet = ICMP(type=type, code=code, id=id)
+        icmp_packet = ICMP(type=int(type), code=int(code), id=int(id))
         return icmp_packet
 
     @except_catch_packet('TCP')
