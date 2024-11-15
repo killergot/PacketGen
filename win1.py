@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1154, 616)
+        MainWindow.resize(1139, 620)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setEnabled(True)
         self.centralwidget.setObjectName("centralwidget")
@@ -54,7 +54,7 @@ class Ui_MainWindow(object):
         self.icmp.setToolTip("")
         self.icmp.setObjectName("icmp")
         self.gridLayoutWidget = QtWidgets.QWidget(self.icmp)
-        self.gridLayoutWidget.setGeometry(QtCore.QRect(60, 30, 541, 31))
+        self.gridLayoutWidget.setGeometry(QtCore.QRect(60, 30, 541, 73))
         self.gridLayoutWidget.setObjectName("gridLayoutWidget")
         self.icmp_layout = QtWidgets.QGridLayout(self.gridLayoutWidget)
         self.icmp_layout.setContentsMargins(0, 0, 0, 0)
@@ -84,7 +84,7 @@ class Ui_MainWindow(object):
         self.tcp_data_text_edit.setGeometry(QtCore.QRect(0, 0, 311, 151))
         self.tcp_data_text_edit.setObjectName("tcp_data_text_edit")
         self.verticalLayoutWidget_2 = QtWidgets.QWidget(self.TCP)
-        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(480, 30, 201, 71))
+        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(480, 30, 208, 72))
         self.verticalLayoutWidget_2.setObjectName("verticalLayoutWidget_2")
         self.flags_layout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_2)
         self.flags_layout.setContentsMargins(0, 0, 0, 0)
@@ -169,55 +169,6 @@ class Ui_MainWindow(object):
         self.label_20.setGeometry(QtCore.QRect(470, 60, 47, 13))
         self.label_20.setObjectName("label_20")
         self.bob.addTab(self.UDP, "")
-        self.gridLayoutWidget_2 = QtWidgets.QWidget(self.centralwidget)
-        self.gridLayoutWidget_2.setGeometry(QtCore.QRect(450, 139, 681, 61))
-        self.gridLayoutWidget_2.setObjectName("gridLayoutWidget_2")
-        self.config_ip_mac = QtWidgets.QGridLayout(self.gridLayoutWidget_2)
-        self.config_ip_mac.setSizeConstraint(QtWidgets.QLayout.SetMinimumSize)
-        self.config_ip_mac.setContentsMargins(0, 0, 0, 0)
-        self.config_ip_mac.setObjectName("config_ip_mac")
-        self.label_2 = QtWidgets.QLabel(self.gridLayoutWidget_2)
-        self.label_2.setObjectName("label_2")
-        self.config_ip_mac.addWidget(self.label_2, 0, 6, 1, 1)
-        self.ip_src_box = QtWidgets.QCheckBox(self.gridLayoutWidget_2)
-        self.ip_src_box.setObjectName("ip_src_box")
-        self.config_ip_mac.addWidget(self.ip_src_box, 1, 0, 1, 1)
-        self.label_4 = QtWidgets.QLabel(self.gridLayoutWidget_2)
-        self.label_4.setObjectName("label_4")
-        self.config_ip_mac.addWidget(self.label_4, 1, 4, 1, 1)
-        self.ip_dst_box = QtWidgets.QCheckBox(self.gridLayoutWidget_2)
-        self.ip_dst_box.setObjectName("ip_dst_box")
-        self.config_ip_mac.addWidget(self.ip_dst_box, 1, 2, 1, 1)
-        self.mac_src_box = QtWidgets.QCheckBox(self.gridLayoutWidget_2)
-        self.mac_src_box.setObjectName("mac_src_box")
-        self.config_ip_mac.addWidget(self.mac_src_box, 0, 0, 1, 1)
-        self.dts_mac_box = QtWidgets.QCheckBox(self.gridLayoutWidget_2)
-        self.dts_mac_box.setObjectName("dts_mac_box")
-        self.config_ip_mac.addWidget(self.dts_mac_box, 0, 3, 1, 1)
-        self.label_3 = QtWidgets.QLabel(self.gridLayoutWidget_2)
-        self.label_3.setObjectName("label_3")
-        self.config_ip_mac.addWidget(self.label_3, 1, 6, 1, 1)
-        self.ip_src_text = QtWidgets.QTextEdit(self.gridLayoutWidget_2)
-        self.ip_src_text.setObjectName("ip_src_text")
-        self.config_ip_mac.addWidget(self.ip_src_text, 1, 1, 1, 1)
-        self.ip_dst_text = QtWidgets.QTextEdit(self.gridLayoutWidget_2)
-        self.ip_dst_text.setObjectName("ip_dst_text")
-        self.config_ip_mac.addWidget(self.ip_dst_text, 1, 3, 1, 1)
-        self.ip_id_text = QtWidgets.QTextEdit(self.gridLayoutWidget_2)
-        self.ip_id_text.setObjectName("ip_id_text")
-        self.config_ip_mac.addWidget(self.ip_id_text, 1, 5, 1, 1)
-        self.ip_ttl_text = QtWidgets.QTextEdit(self.gridLayoutWidget_2)
-        self.ip_ttl_text.setObjectName("ip_ttl_text")
-        self.config_ip_mac.addWidget(self.ip_ttl_text, 1, 7, 1, 1)
-        self.mac_proto_text = QtWidgets.QTextEdit(self.gridLayoutWidget_2)
-        self.mac_proto_text.setObjectName("mac_proto_text")
-        self.config_ip_mac.addWidget(self.mac_proto_text, 0, 7, 1, 1)
-        self.mac_dst_text = QtWidgets.QTextEdit(self.gridLayoutWidget_2)
-        self.mac_dst_text.setObjectName("mac_dst_text")
-        self.config_ip_mac.addWidget(self.mac_dst_text, 0, 4, 1, 2)
-        self.mac_src_text = QtWidgets.QTextEdit(self.gridLayoutWidget_2)
-        self.mac_src_text.setObjectName("mac_src_text")
-        self.config_ip_mac.addWidget(self.mac_src_text, 0, 1, 1, 2)
         self.label_8 = QtWidgets.QLabel(self.centralwidget)
         self.label_8.setGeometry(QtCore.QRect(420, 180, 47, 13))
         self.label_8.setObjectName("label_8")
@@ -227,9 +178,59 @@ class Ui_MainWindow(object):
         self.just_ip = QtWidgets.QCheckBox(self.centralwidget)
         self.just_ip.setGeometry(QtCore.QRect(640, 440, 231, 17))
         self.just_ip.setObjectName("just_ip")
+        self.gridLayoutWidget_3 = QtWidgets.QWidget(self.centralwidget)
+        self.gridLayoutWidget_3.setGeometry(QtCore.QRect(450, 140, 681, 61))
+        self.gridLayoutWidget_3.setObjectName("gridLayoutWidget_3")
+        self.config_ip_mac_2 = QtWidgets.QGridLayout(self.gridLayoutWidget_3)
+        self.config_ip_mac_2.setSizeConstraint(QtWidgets.QLayout.SetMinimumSize)
+        self.config_ip_mac_2.setContentsMargins(0, 0, 0, 0)
+        self.config_ip_mac_2.setObjectName("config_ip_mac_2")
+        self.ip_src_text = QtWidgets.QLineEdit(self.gridLayoutWidget_3)
+        self.ip_src_text.setObjectName("ip_src_text")
+        self.config_ip_mac_2.addWidget(self.ip_src_text, 1, 2, 1, 1)
+        self.ip_dst_text = QtWidgets.QLineEdit(self.gridLayoutWidget_3)
+        self.ip_dst_text.setText("")
+        self.ip_dst_text.setObjectName("ip_dst_text")
+        self.config_ip_mac_2.addWidget(self.ip_dst_text, 1, 4, 1, 1)
+        self.mac_src_text = QtWidgets.QLineEdit(self.gridLayoutWidget_3)
+        self.mac_src_text.setObjectName("mac_src_text")
+        self.config_ip_mac_2.addWidget(self.mac_src_text, 0, 1, 1, 3)
+        self.label_10 = QtWidgets.QLabel(self.gridLayoutWidget_3)
+        self.label_10.setObjectName("label_10")
+        self.config_ip_mac_2.addWidget(self.label_10, 0, 7, 1, 1)
+        self.ip_dst_box = QtWidgets.QCheckBox(self.gridLayoutWidget_3)
+        self.ip_dst_box.setObjectName("ip_dst_box")
+        self.config_ip_mac_2.addWidget(self.ip_dst_box, 1, 3, 1, 1)
+        self.label_13 = QtWidgets.QLabel(self.gridLayoutWidget_3)
+        self.label_13.setObjectName("label_13")
+        self.config_ip_mac_2.addWidget(self.label_13, 1, 7, 1, 1)
+        self.lineEdit_3 = QtWidgets.QLineEdit(self.gridLayoutWidget_3)
+        self.lineEdit_3.setObjectName("lineEdit_3")
+        self.config_ip_mac_2.addWidget(self.lineEdit_3, 0, 5, 1, 2)
+        self.ip_id_text = QtWidgets.QLineEdit(self.gridLayoutWidget_3)
+        self.ip_id_text.setObjectName("ip_id_text")
+        self.config_ip_mac_2.addWidget(self.ip_id_text, 1, 6, 1, 1)
+        self.dts_mac_box = QtWidgets.QCheckBox(self.gridLayoutWidget_3)
+        self.dts_mac_box.setObjectName("dts_mac_box")
+        self.config_ip_mac_2.addWidget(self.dts_mac_box, 0, 4, 1, 1)
+        self.ip_src_box = QtWidgets.QCheckBox(self.gridLayoutWidget_3)
+        self.ip_src_box.setObjectName("ip_src_box")
+        self.config_ip_mac_2.addWidget(self.ip_src_box, 1, 0, 1, 1)
+        self.mac_src_box = QtWidgets.QCheckBox(self.gridLayoutWidget_3)
+        self.mac_src_box.setObjectName("mac_src_box")
+        self.config_ip_mac_2.addWidget(self.mac_src_box, 0, 0, 1, 1)
+        self.label_12 = QtWidgets.QLabel(self.gridLayoutWidget_3)
+        self.label_12.setObjectName("label_12")
+        self.config_ip_mac_2.addWidget(self.label_12, 1, 5, 1, 1)
+        self.ip_ttl_text = QtWidgets.QLineEdit(self.gridLayoutWidget_3)
+        self.ip_ttl_text.setObjectName("ip_ttl_text")
+        self.config_ip_mac_2.addWidget(self.ip_ttl_text, 1, 8, 1, 1)
+        self.mac_proto_text = QtWidgets.QLineEdit(self.gridLayoutWidget_3)
+        self.mac_proto_text.setObjectName("mac_proto_text")
+        self.config_ip_mac_2.addWidget(self.mac_proto_text, 0, 8, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1154, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1139, 22))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -237,7 +238,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.bob.setCurrentIndex(0)
+        self.bob.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -250,22 +251,31 @@ class Ui_MainWindow(object):
         self.int_list.setItemText(0, _translate("MainWindow", "default: Ethernet"))
         self.label_11.setText(_translate("MainWindow", "Type :"))
         self.icmp_type_text.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:\'Segoe UI\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'MS Shell Dlg 2\'; font-size:8.25pt;\"><br /></p></body></html>"))
         self.icmp_id_box.setText(_translate("MainWindow", "ID"))
         self.icmp_code_box.setText(_translate("MainWindow", "Code"))
         self.icmp_id_text.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:\'Segoe UI\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'MS Shell Dlg 2\'; font-size:8.25pt;\"><br /></p></body></html>"))
         self.icmp_code_text.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:\'Segoe UI\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'MS Shell Dlg 2\'; font-size:8.25pt;\"><br /></p></body></html>"))
         self.bob.setTabText(self.bob.indexOf(self.icmp), _translate("MainWindow", "ICMP"))
         self.FIN.setText(_translate("MainWindow", "FIN"))
         self.PSH.setText(_translate("MainWindow", "PSH"))
@@ -285,51 +295,16 @@ class Ui_MainWindow(object):
         self.label_19.setText(_translate("MainWindow", "Source port"))
         self.label_20.setText(_translate("MainWindow", "Dst port"))
         self.bob.setTabText(self.bob.indexOf(self.UDP), _translate("MainWindow", "UDP"))
-        self.label_2.setText(_translate("MainWindow", "Протокол:"))
-        self.ip_src_box.setText(_translate("MainWindow", "SRC:"))
-        self.label_4.setText(_translate("MainWindow", "ИД:"))
-        self.ip_dst_box.setText(_translate("MainWindow", "DST:"))
-        self.mac_src_box.setText(_translate("MainWindow", "SRC:"))
-        self.dts_mac_box.setText(_translate("MainWindow", "DST:"))
-        self.label_3.setText(_translate("MainWindow", "T T L"))
-        self.ip_src_text.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
-        self.ip_dst_text.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
-        self.ip_id_text.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">13555</p></body></html>"))
-        self.ip_ttl_text.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
-        self.mac_proto_text.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
-        self.mac_dst_text.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
-        self.mac_src_text.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.label_8.setText(_translate("MainWindow", "L3:"))
         self.label_9.setText(_translate("MainWindow", "L2:"))
         self.just_ip.setText(_translate("MainWindow", "may be just send IP packet?"))
+        self.label_10.setText(_translate("MainWindow", "Протокол:"))
+        self.ip_dst_box.setText(_translate("MainWindow", "DST:"))
+        self.label_13.setText(_translate("MainWindow", "T T L"))
+        self.dts_mac_box.setText(_translate("MainWindow", "DST:"))
+        self.ip_src_box.setText(_translate("MainWindow", "SRC:"))
+        self.mac_src_box.setText(_translate("MainWindow", "SRC:"))
+        self.label_12.setText(_translate("MainWindow", "ИД:"))
 
 
 if __name__ == "__main__":

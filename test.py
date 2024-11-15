@@ -1,7 +1,6 @@
-from PacketGen import PacketGenerator
+ab = ['Saturday', 'Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', ]
 
-temp = PacketGenerator()
+days = ((a+1,ab[a%7]) for a in range(77))
 
-a = temp.getIpPacket()
-a = a / temp.getTcpPacket(flags='AP')
-print(temp.list_packet)
+for i in days:
+    print(i)

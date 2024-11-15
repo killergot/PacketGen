@@ -31,7 +31,7 @@ class MyClass(Ui_PacketGen):
 
     @except_catch
     def add_data_to_table(self, data):
-        '''Выводит отправенные пакеты в таблице'''
+        '''Выводит отправленные пакеты в таблице'''
         items = [QtGui.QStandardItem(str(cell)) for cell in data[:-1]]
         self.model.appendRow(items)
 
