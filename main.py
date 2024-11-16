@@ -29,6 +29,7 @@ class MyClass(Ui_MainWindow):
         self.Packet_view.setColumnWidth(1, 100)  # Ширина второго столбца 150 пикселей
         self.Packet_view.setColumnWidth(2, 100)
         self.Packet_view.setColumnWidth(3, 130)
+
         self.selection_packet_model = self.Packet_view.selectionModel()
         self.selection_packet_model.selectionChanged.connect(self.on_selection_changed)
 
@@ -39,10 +40,8 @@ class MyClass(Ui_MainWindow):
         indexes = self.selection_packet_model.selectedRows()
         if indexes:  # Если есть выбранные строки
             selected_row = indexes[0].row()  # Берем первую выбранную строку
-            self.label234 = QtWidgets.QLabel("Ваш текст здесь", self.centralwidget)
-            self.label234.setGeometry(QtCore.QRect(10, 440, 381, 121))
-            self.label234.setObjectName("label")
-            print('asdfsdaf')
+            self.data_view.setText(str(self.temp.list_packet[selected_row][4]))
+
 
     @except_catch
     def add_data_to_table(self, data):

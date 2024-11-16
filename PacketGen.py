@@ -101,7 +101,8 @@ class PacketGenerator:
             id = packet[ICMP].id
             code = packet[ICMP].code
 
-        payload = bytes(packet[Raw].load) if packet.haslayer(Raw) else None
+        payload = packet[Raw].load if packet.haslayer(Raw) else None
+        print(payload)
 
         if protocol == 'TCP':
             packet_data.extend([protocol, src_ip,dst_ip,f'[{dst_port} -> {src_port}], {flags}', payload])
@@ -111,7 +112,7 @@ class PacketGenerator:
             packet_data.extend([protocol, src_ip, dst_ip,'Just IP', payload])
         else:
             packet_data.extend([protocol, src_ip, dst_ip,f'id = {id}, code = {code}' , payload])
-
+        print(packet_data)
         return packet_data
 
 
